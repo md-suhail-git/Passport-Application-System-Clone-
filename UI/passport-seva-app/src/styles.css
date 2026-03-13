@@ -1,0 +1,22 @@
+/* Global Styles */
+
+html,
+body {
+  height: auto !important;
+  overflow-y: auto !important;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f4f6f9;
+  color: #333;
+}
+
+/* Optional: Improve form readability */
+input,
+select,
+textarea,
+button {
+  font-family: 'Poppins', sans-serif;
+}

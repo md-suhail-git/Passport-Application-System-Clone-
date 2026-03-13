@@ -1,0 +1,38 @@
+.page-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.app-table th,
+.app-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-table th {
+  background: #f8fafc;
+  text-align: left;
+  font-weight: 600;
+}
+
+.status-pill {
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+.loading, .error, .empty {
+  padding: 20px;
+  text-align: center;
+  color: #64748b;
+}

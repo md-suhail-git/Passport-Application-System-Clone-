@@ -1,0 +1,586 @@
+<div class="application-container">
+  <h2>Passport Application Form</h2>
+
+  <!-- Stepper -->
+  <div class="stepper">
+    <div class="step" *ngFor="let step of steps; let i = index" 
+         [class.active]="currentStep >= i + 1"
+         [class.completed]="currentStep > i + 1">
+      <span class="step-number">{{ i + 1 }}</span>
+      <span class="step-label">{{ step }}</span>
+    </div>
+  </div>
+
+  <form [formGroup]="applicationForm">
+
+    <!-- Step 1: Select Office -->
+    <div *ngIf="currentStep === 1" class="form-section">
+      <h3>Select Passport Office</h3>
+      <div class="form-group">
+        <label for="officeId">Passport Office *</label>
+        <select class="form-control" formControlName="OfficeID">
+          <option [ngValue]="null">-- Select Office --</option>
+          <option *ngFor="let office of offices" [ngValue]="office.OfficeID">
+            {{ office.OfficeName }} - {{ office.City }}
+          </option>
+        </select>
+        <div *ngIf="applicationForm.get('OfficeID')?.touched && applicationForm.get('OfficeID')?.invalid" class="error-msg">
+          Passport Office is required.
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="button" class="btn btn-primary" (click)="goNext()" 
+                [disabled]="!applicationForm.get('OfficeID')?.valid">Continue</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Passport Type -->
+    <div *ngIf="currentStep === 2" class="form-section">
+      <h3>Select Passport Type</h3>
+      <div class="form-group">
+        <label for="passportTypeId">Passport Type *</label>
+        <select id="passportTypeId" formControlName="PassportTypeID" class="form-control">
+          <option [ngValue]="null">-- Select Passport Type --</option>
+          <option *ngFor="let type of passportTypes" [ngValue]="type.PassportTypeID">
+            {{ type.TypeName }} - ₹{{ type.Fee }} ({{ type.ValidityYears }} Years)
+          </option>
+        </select>
+        <div *ngIf="applicationForm.get('PassportTypeID')?.touched && applicationForm.get('PassportTypeID')?.invalid" class="error-msg">
+          Passport Type is required.
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-outline" (click)="saveStep()">Save</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()" 
+                [disabled]="!applicationForm.get('PassportTypeID')?.valid">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Application Details -->
+    <div *ngIf="currentStep === 3" class="form-section">
+      <h3>Application Details</h3>
+      <div class="form-group">
+        <label for="applicationType">Application Type *</label>
+        <select class="form-control" formControlName="ApplicationType">
+          <option [ngValue]="null">-- Select Application Type --</option>
+          <option value="New">New Passport</option>
+          <option value="Renewal">Renewal</option>
+          <option value="Replacement">Replacement</option>
+          <option value="Amendment">Amendment</option>
+        </select>
+        <div *ngIf="applicationForm.get('ApplicationType')?.touched && applicationForm.get('ApplicationType')?.invalid" class="error-msg">
+          Application Type is required.
+        </div>
+      </div>
+      <div class="form-group" *ngIf="applicationForm.get('ApplicationType')?.value !== 'New'">
+        <label for="previousPassportNumber">Previous Passport Number</label>
+        <input id="previousPassportNumber" type="text" formControlName="PreviousPassportNumber" class="form-control" maxlength="20">
+      </div>
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-outline" (click)="saveStep()">Save</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()" 
+                [disabled]="!applicationForm.get('ApplicationType')?.valid">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Personal & Address Details -->
+    <div *ngIf="currentStep === 4" class="form-section">
+      <h3>Personal Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="firstName">First Name *</label>
+          <input id="firstName" type="text" formControlName="FirstName" class="form-control" maxlength="100">
+          <div *ngIf="applicationForm.get('FirstName')?.touched && applicationForm.get('FirstName')?.invalid" class="error-msg">
+            First Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="middleName">Middle Name</label>
+          <input id="middleName" type="text" formControlName="MiddleName" class="form-control" maxlength="100">
+        </div>
+        <div class="form-group">
+          <label for="lastName">Last Name *</label>
+          <input id="lastName" type="text" formControlName="LastName" class="form-control" maxlength="100">
+          <div *ngIf="applicationForm.get('LastName')?.touched && applicationForm.get('LastName')?.invalid" class="error-msg">
+            Last Name is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nationalId">National ID *</label>
+          <input id="nationalId" type="text" formControlName="NationalID" class="form-control" maxlength="50">
+          <div *ngIf="applicationForm.get('NationalID')?.touched && applicationForm.get('NationalID')?.invalid" class="error-msg">
+            National ID is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth *</label>
+          <input id="dateOfBirth" type="date" formControlName="DateOfBirth" class="form-control">
+          <div *ngIf="applicationForm.get('DateOfBirth')?.touched && applicationForm.get('DateOfBirth')?.invalid" class="error-msg">
+            Date of Birth is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Gender *</label>
+          <div class="radio-group">
+            <input type="radio" formControlName="Gender" value="M" id="genderM"> <label for="genderM">Male</label>
+            <input type="radio" formControlName="Gender" value="F" id="genderF"> <label for="genderF">Female</label>
+            <input type="radio" formControlName="Gender" value="O" id="genderO"> <label for="genderO">Other</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="placeOfBirth">Place of Birth</label>
+          <input id="placeOfBirth" type="text" formControlName="PlaceOfBirth" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="maritalStatus">Marital Status</label>
+          <select id="maritalStatus" formControlName="MaritalStatus" class="form-control">
+            <option value="">-- Select --</option>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Divorced">Divorced</option>
+            <option value="Widowed">Widowed</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="occupation">Occupation</label>
+          <input id="occupation" type="text" formControlName="Occupation" class="form-control">
+        </div>
+      </div>
+
+      <h3>Address Details</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email *</label>
+          <input id="email" type="email" formControlName="Email" class="form-control">
+          <div *ngIf="applicationForm.get('Email')?.touched && applicationForm.get('Email')?.invalid" class="error-msg">
+            Valid Email is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone *</label>
+          <input id="phone" type="tel" formControlName="Phone" class="form-control">
+          <div *ngIf="applicationForm.get('Phone')?.touched && applicationForm.get('Phone')?.invalid" class="error-msg">
+            Phone is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="address">Address *</label>
+        <textarea id="address" formControlName="Address" class="form-control" rows="2"></textarea>
+        <div *ngIf="applicationForm.get('Address')?.touched && applicationForm.get('Address')?.invalid" class="error-msg">
+          Address is required.
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City *</label>
+          <input id="city" type="text" formControlName="City" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="state">State *</label>
+          <input id="state" type="text" formControlName="State" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="postalCode">Postal Code *</label>
+          <input id="postalCode" type="text" formControlName="PostalCode" class="form-control">
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-outline" (click)="saveStep()">Save</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()" [disabled]="!isStep4Valid()">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Emergency Details -->
+    <div *ngIf="currentStep === 5" class="form-section">
+      <h3>Emergency Contact Details</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="emergencyContactName">Emergency Contact Name *</label>
+          <input id="emergencyContactName" type="text" formControlName="EmergencyContactName" class="form-control">
+          <div *ngIf="applicationForm.get('EmergencyContactName')?.touched && applicationForm.get('EmergencyContactName')?.invalid" class="error-msg">
+            Emergency Contact Name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="emergencyContactPhone">Emergency Contact Phone *</label>
+          <input id="emergencyContactPhone" type="tel" formControlName="EmergencyContactPhone" class="form-control">
+          <div *ngIf="applicationForm.get('EmergencyContactPhone')?.touched && applicationForm.get('EmergencyContactPhone')?.invalid" class="error-msg">
+            Emergency Contact Phone is required.
+          </div>
+        </div>
+      </div>
+
+      <h3>Travel Information (Optional)</h3>
+      <div class="form-group">
+        <label for="travelPurpose">Purpose of Travel</label>
+        <textarea id="travelPurpose" formControlName="TravelPurpose" class="form-control" rows="2"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="expectedTravelDate">Expected Travel Date</label>
+        <input id="expectedTravelDate" type="date" formControlName="ExpectedTravelDate" class="form-control">
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-outline" (click)="saveStep()">Save</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()" [disabled]="!isStep5Valid()">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 6: Document Upload -->
+    <div *ngIf="currentStep === 6" class="form-section">
+      <h3>Document Upload & Verification</h3>
+      
+      <div class="document-grid">
+        <div class="document-item" *ngFor="let docType of documentTypes">
+          <div class="document-header">
+            <label>{{ docType.TypeName }} <span *ngIf="docType.IsRequired">*</span></label>
+            <span class="max-size">(Max {{ docType.MaxFileSizeMB }}MB)</span>
+          </div>
+          <input type="file" (change)="onFileSelect($event, docType.DocumentTypeID)" 
+                 accept="image/jpeg,image/png,application/pdf" class="form-control">
+          <div class="document-status" *ngIf="documents[docType.DocumentTypeID]">
+            <span class="uploaded">✓ {{ documents[docType.DocumentTypeID].name }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()" [disabled]="!areRequiredDocsUploaded()">Next</button>
+      </div>
+    </div>
+
+    <!-- Step 7: Preview Details -->
+    <div *ngIf="currentStep === 7" class="form-section preview-section">
+      <h3>Preview Application Details</h3>
+
+      <div class="preview-card">
+        <h4>Office & Passport Type</h4>
+        <div class="preview-row">
+          <span>Office:</span> <strong>{{ getOfficeName() }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Passport Type:</span> <strong>{{ getPassportTypeName() }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Application Type:</span> <strong>{{ applicationForm.get('ApplicationType')?.value }}</strong>
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h4>Personal Information</h4>
+        <div class="preview-row">
+          <span>Name:</span> <strong>{{ applicationForm.get('FirstName')?.value }} {{ applicationForm.get('MiddleName')?.value }} {{ applicationForm.get('LastName')?.value }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>National ID:</span> <strong>{{ applicationForm.get('NationalID')?.value }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Date of Birth:</span> <strong>{{ applicationForm.get('DateOfBirth')?.value | date:'dd/MM/yyyy' }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Gender:</span> <strong>{{ getGenderLabel() }}</strong>
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h4>Contact Information</h4>
+        <div class="preview-row">
+          <span>Email:</span> <strong>{{ applicationForm.get('Email')?.value }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Phone:</span> <strong>{{ applicationForm.get('Phone')?.value }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Address:</span> <strong>{{ applicationForm.get('Address')?.value }}, {{ applicationForm.get('City')?.value }}, {{ applicationForm.get('State')?.value }} - {{ applicationForm.get('PostalCode')?.value }}</strong>
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h4>Emergency Contact</h4>
+        <div class="preview-row">
+          <span>Name:</span> <strong>{{ applicationForm.get('EmergencyContactName')?.value }}</strong>
+        </div>
+        <div class="preview-row">
+          <span>Phone:</span> <strong>{{ applicationForm.get('EmergencyContactPhone')?.value }}</strong>
+        </div>
+      </div>
+
+      <div class="preview-card">
+        <h4>Uploaded Documents</h4>
+        <div class="preview-row" *ngFor="let doc of getUploadedDocuments()">
+          <span>{{ doc.typeName }}:</span> <strong>{{ doc.fileName }}</strong>
+        </div>
+      </div>
+
+      <div class="declaration-box">
+        <input type="checkbox" id="declaration" formControlName="Declaration">
+        <label for="declaration">
+          I hereby declare that all the information provided is true and correct to the best of my knowledge. 
+          I understand that any false statement may result in rejection of my application.
+        </label>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="submitApplication()" 
+                [disabled]="!applicationForm.get('Declaration')?.value || isSubmitting">
+          {{ isSubmitting ? 'Submitting...' : 'Submit Application' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 8: ARN Generated Dialog -->
+    <div *ngIf="currentStep === 8" class="form-section arn-section">
+      <div class="arn-dialog">
+        <div class="arn-icon">✓</div>
+        <h3>Application Submitted Successfully!</h3>
+        <div class="arn-number">
+          <label>Application Reference Number (ARN)</label>
+          <strong>{{ arnNumber }}</strong>
+        </div>
+        <p class="arn-info">Please save this ARN for future reference. You will need this to track your application status.</p>
+        <div class="button-group">
+          <button type="button" class="btn btn-outline" (click)="goToSchedule()">Schedule Appointment</button>
+          <button type="button" class="btn btn-primary" (click)="goToPayment()">Pay Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 9: Schedule Appointment -->
+    <div *ngIf="currentStep === 9" class="form-section appointment-section">
+      <h3>Schedule Appointment</h3>
+      
+      <div class="calendar-container">
+        <div class="calendar-header">
+          <button type="button" class="btn-icon" (click)="prevMonth()">←</button>
+          <h4>{{ currentMonth | date:'MMMM yyyy' }}</h4>
+          <button type="button" class="btn-icon" (click)="nextMonth()">→</button>
+        </div>
+
+        <div class="calendar-grid">
+          <div class="calendar-day-header" *ngFor="let day of weekDays">{{ day }}</div>
+          <div class="calendar-day" *ngFor="let date of calendarDays"
+               [class.empty]="!date"
+               [class.available]="date && isDateAvailable(date)"
+               [class.booked]="date && !isDateAvailable(date)"
+               [class.selected]="date && isDateSelected(date)"
+               [class.past]="date && isPastDate(date)"
+               (click)="selectDate(date)">
+            <span *ngIf="date">{{ date | date:'d' }}</span>
+          </div>
+        </div>
+
+        <div class="legend">
+          <span class="legend-item"><span class="dot available"></span> Available</span>
+          <span class="legend-item"><span class="dot booked"></span> Fully Booked</span>
+          <span class="legend-item"><span class="dot selected"></span> Selected</span>
+        </div>
+      </div>
+
+      <div class="time-slots" *ngIf="selectedDate">
+        <h4>Available Time Slots for {{ selectedDate | date:'dd MMM yyyy' }}</h4>
+        <div class="slots-grid">
+          <button type="button" class="slot-btn" *ngFor="let slot of availableSlots"
+                  [class.selected]="selectedSlot === slot.TimeSlot"
+                  [class.disabled]="!slot.IsAvailable"
+                  [disabled]="!slot.IsAvailable"
+                  (click)="selectSlot(slot.TimeSlot)">
+            {{ slot.TimeSlot }}
+            <span class="slot-count" *ngIf="slot.IsAvailable">({{ slot.AvailableCount }} left)</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="confirmAppointment()" 
+                [disabled]="!selectedDate || !selectedSlot">
+          Confirm & Make Payment
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 10: ARN Preview with Payment -->
+    <div *ngIf="currentStep === 10" class="form-section payment-preview">
+      <h3>Application Summary</h3>
+
+      <div class="summary-card">
+        <div class="summary-row">
+          <span>ARN:</span> <strong>{{ arnNumber }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Applicant Name:</span> <strong>{{ applicationForm.get('FirstName')?.value }} {{ applicationForm.get('LastName')?.value }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Passport Type:</span> <strong>{{ getPassportTypeName() }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Appointment Date:</span> <strong>{{ selectedDate | date:'dd MMM yyyy' }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Time Slot:</span> <strong>{{ selectedSlot }}</strong>
+        </div>
+        <div class="summary-row">
+          <span>Office:</span> <strong>{{ getOfficeName() }}</strong>
+        </div>
+        <hr>
+        <div class="summary-row total">
+          <span>Total Amount:</span> <strong>₹{{ getPassportFee() }}</strong>
+        </div>
+      </div>
+
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()">Pay Now</button>
+      </div>
+    </div>
+
+    <!-- Step 11: Payment -->
+    <div *ngIf="currentStep === 11" class="form-section payment-section">
+      <h3>Payment</h3>
+
+      <div class="payment-amount">
+        <span>Amount to Pay:</span>
+        <strong>₹{{ getPassportFee() }}</strong>
+      </div>
+
+      <div class="payment-methods">
+        <div class="payment-tab" [class.active]="paymentMethod === 'qr'" (click)="paymentMethod = 'qr'">
+          QR Code
+        </div>
+        <div class="payment-tab" [class.active]="paymentMethod === 'online'" (click)="paymentMethod = 'online'">
+          Online Payment
+        </div>
+      </div>
+
+      <div class="payment-content" *ngIf="paymentMethod === 'qr'">
+        <div class="qr-container">
+          <img [src]="qrCodeUrl" alt="Payment QR Code" class="qr-code">
+          <p>Scan QR code to pay using UPI</p>
+        </div>
+      </div>
+
+      <div class="payment-content" *ngIf="paymentMethod === 'online'">
+        <div class="form-group">
+          <label>Card Number *</label>
+          <input type="text" class="form-control" [(ngModel)]="cardNumber" [ngModelOptions]="{standalone: true}" 
+                 placeholder="1234 5678 9012 3456" maxlength="19">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Expiry Date *</label>
+            <input type="text" class="form-control" [(ngModel)]="expiryDate" [ngModelOptions]="{standalone: true}" 
+                   placeholder="MM/YY" maxlength="5">
+          </div>
+          <div class="form-group">
+            <label>CVV *</label>
+            <input type="password" class="form-control" [(ngModel)]="cvv" [ngModelOptions]="{standalone: true}" 
+                   placeholder="***" maxlength="3">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Card Holder Name *</label>
+          <input type="text" class="form-control" [(ngModel)]="cardHolderName" [ngModelOptions]="{standalone: true}" 
+                 placeholder="Name on card">
+        </div>
+      </div>
+<!-- processPayment() -->
+      <div class="button-group">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">Back</button>
+        <button type="button" class="btn btn-primary" (click)="goNext()" [disabled]="isProcessingPayment">
+          {{ isProcessingPayment ? 'Processing...' : 'Payment Successful' }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Step 12: Success Dialog -->
+    <div *ngIf="currentStep === 12" class="form-section success-section">
+      <div class="success-dialog">
+        <div class="success-icon">✓</div>
+        <h3>Payment Successful!</h3>
+        
+        <div class="appointment-details">
+          <h4>Appointment Details</h4>
+          <div class="detail-row">
+            <span>ARN:</span> <strong>{{ arnNumber }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Applicant Name:</span> <strong>{{ applicationForm.get('FirstName')?.value }} {{ applicationForm.get('LastName')?.value }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Date of Birth:</span> <strong>{{ applicationForm.get('DateOfBirth')?.value | date:'dd/MM/yyyy' }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Appointment Date:</span> <strong>{{ selectedDate | date:'dd MMM yyyy (EEEE)' }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Time:</span> <strong>{{ selectedSlot }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Location:</span> <strong>{{ getOfficeFullAddress() }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Transaction ID:</span> <strong>{{ transactionId }}</strong>
+          </div>
+          <div class="detail-row">
+            <span>Amount Paid:</span> <strong>₹{{ getPassportFee() }}</strong>
+          </div>
+        </div>
+
+        <div class="important-note">
+          <strong>Important:</strong> Please carry the following documents on the appointment date:
+          <ul>
+            <li>Original ID Proof</li>
+            <li>Printed Appointment Receipt</li>
+            <li>All uploaded documents (original)</li>
+          </ul>
+        </div>
+
+        <div class="button-group">
+          <button type="button" class="btn btn-primary" (click)="printReceipt()">
+            Print Appointment Receipt
+          </button>
+        </div>
+        
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<!-- Print Receipt Template (hidden) -->
+<div id="printReceipt" class="print-receipt" style="display: none;">
+  <div class="receipt-header">
+    <h2>PASSPORT APPLICATION RECEIPT</h2>
+    
+    <h1>Teesting Purpose</h1>
+    <p>Ministry of External Affairs</p>
+  </div>
+  <div class="receipt-body">
+    <table>
+      <tr><td>ARN:</td><td>{{ arnNumber }}</td></tr>
+      <tr><td>Applicant Name:</td><td>{{ applicationForm.get('FirstName')?.value }} {{ applicationForm.get('LastName')?.value }}</td></tr>
+      <tr><td>Date of Birth:</td><td>{{ applicationForm.get('DateOfBirth')?.value | date:'dd/MM/yyyy' }}</td></tr>
+      <tr><td>Appointment Date:</td><td>{{ selectedDate | date:'dd MMM yyyy (EEEE)' }}</td></tr>
+      <tr><td>Time Slot:</td><td>{{ selectedSlot }}</td></tr>
+      <tr><td>Location:</td><td>{{ getOfficeFullAddress() }}</td></tr>
+      <tr><td>Transaction ID:</td><td>{{ transactionId }}</td></tr>
+      <tr><td>Amount Paid:</td><td>₹{{ getPassportFee() }}</td></tr>
+    </table>
+  </div>
+</div>

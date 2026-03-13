@@ -1,0 +1,293 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Passport\\Backend\\Passsport\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|d:\\passport\\backend\\passsport\\controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:controllers\\projectcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:app_start\\webapiconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\models\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:models\\dto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\passport.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:passport.context.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:application.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\helper\\jwttokenhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:helper\\jwttokenhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\passport.tt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:passport.tt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\passport.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:passport.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:document.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\passport.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:passport.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\citizen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:citizen.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:startup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:startup.auth.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:global.asax.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|D:\\Passport\\Backend\\Passsport\\app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0EC44F06-9E0B-4081-A7C3-465DCD3CD089}|Passsport.csproj|solutionrelative:app_start\\routeconfig.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 359,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Citizen.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Citizen.cs",
+              "RelativeDocumentMoniker": "Citizen.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Citizen.cs",
+              "RelativeToolTip": "Citizen.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAIA/wBkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T08:14:54.579Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Application.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Application.cs",
+              "RelativeDocumentMoniker": "Application.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Application.cs",
+              "RelativeToolTip": "Application.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAArwBEAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T08:14:49.41Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Document.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Document.cs",
+              "RelativeDocumentMoniker": "Document.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Document.cs",
+              "RelativeToolTip": "Document.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAA7wBoAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T07:48:37.233Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Startup.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Startup.cs",
+              "RelativeDocumentMoniker": "Startup.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Startup.cs",
+              "RelativeToolTip": "Startup.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAYwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T09:58:21.289Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Startup.Auth.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Startup.Auth.cs",
+              "RelativeDocumentMoniker": "Startup.Auth.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Startup.Auth.cs",
+              "RelativeToolTip": "Startup.Auth.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T09:50:56.053Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Web.config",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Web.config",
+              "RelativeDocumentMoniker": "Web.config",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Web.config",
+              "RelativeToolTip": "Web.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAsAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-12-27T10:53:24.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProjectController.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Controllers\\ProjectController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ProjectController.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Controllers\\ProjectController.cs",
+              "RelativeToolTip": "Controllers\\ProjectController.cs",
+              "ViewState": "AgIAAOUAAAAAAAAAAAAmwPkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T09:38:34.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DTO.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Models\\DTO.cs",
+              "RelativeDocumentMoniker": "Models\\DTO.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Models\\DTO.cs",
+              "RelativeToolTip": "Models\\DTO.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAkwFgAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T09:45:36.371Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Passport.Context.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Passport.Context.cs",
+              "RelativeDocumentMoniker": "Passport.Context.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Passport.Context.cs",
+              "RelativeToolTip": "Passport.Context.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAIwCUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T09:53:55.407Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Passport.Designer.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Passport.Designer.cs",
+              "RelativeDocumentMoniker": "Passport.Designer.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Passport.Designer.cs",
+              "RelativeToolTip": "Passport.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-30T13:06:58.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Passport.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Passport.edmx",
+              "RelativeDocumentMoniker": "Passport.edmx",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Passport.edmx [Diagram1]",
+              "RelativeToolTip": "Passport.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-12-31T06:00:01.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Passport.tt",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Passport.tt",
+              "RelativeDocumentMoniker": "Passport.tt",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Passport.tt",
+              "RelativeToolTip": "Passport.tt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-12-31T10:07:16.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Global.asax.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Global.asax.cs",
+              "RelativeDocumentMoniker": "Global.asax.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Global.asax.cs",
+              "RelativeToolTip": "Global.asax.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAxwBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T10:23:25.761Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "RouteConfig.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\App_Start\\RouteConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\RouteConfig.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\App_Start\\RouteConfig.cs",
+              "RelativeToolTip": "App_Start\\RouteConfig.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAIBZwA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T10:17:09.953Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "WebApiConfig.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\App_Start\\WebApiConfig.cs",
+              "RelativeDocumentMoniker": "App_Start\\WebApiConfig.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\App_Start\\WebApiConfig.cs",
+              "RelativeToolTip": "App_Start\\WebApiConfig.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T10:12:34.391Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\AppUser.cs",
+              "RelativeDocumentMoniker": "AppUser.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\AppUser.cs",
+              "RelativeToolTip": "AppUser.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAA7wBwAAAA0AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T09:53:37.987Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JwtTokenHelper.cs",
+              "DocumentMoniker": "D:\\Passport\\Backend\\Passsport\\Helper\\JwtTokenHelper.cs",
+              "RelativeDocumentMoniker": "Helper\\JwtTokenHelper.cs",
+              "ToolTip": "D:\\Passport\\Backend\\Passsport\\Helper\\JwtTokenHelper.cs",
+              "RelativeToolTip": "Helper\\JwtTokenHelper.cs",
+              "ViewState": "AgIAABcAAAAAAAAAAAAMwCEAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-27T09:47:03.629Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

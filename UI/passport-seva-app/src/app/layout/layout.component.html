@@ -1,0 +1,63 @@
+<div class="app-container">
+
+  <!-- Sidebar -->
+  <aside class="sidebar" [class.collapsed]="sidebarCollapsed">
+    <div class="sidebar-header">
+      <mat-icon class="logo-icon">public</mat-icon>
+      <span class="brand" *ngIf="!sidebarCollapsed">
+        Passport<span class="light">Service</span>
+      </span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/home" routerLinkActive="active" class="nav-item">
+        <mat-icon>dashboard</mat-icon>
+        <span *ngIf="!sidebarCollapsed">Dashboard</span>
+      </a>
+
+      <a routerLink="/passport/apply" routerLinkActive="active" class="nav-item">
+        <mat-icon>add_circle</mat-icon>
+        <span *ngIf="!sidebarCollapsed">New Application</span>
+      </a>
+
+      <a routerLink="/my-applications" routerLinkActive="active" class="nav-item">
+        <mat-icon>list_alt</mat-icon>
+        <span *ngIf="!sidebarCollapsed">My Applications</span>
+      </a>
+
+      <a routerLink="/profile" routerLinkActive="active" class="nav-item">
+        <mat-icon>person</mat-icon>
+        <span *ngIf="!sidebarCollapsed">Profile</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button mat-icon-button (click)="logout()" class="logout-btn">
+        <mat-icon>logout</mat-icon>
+        <span *ngIf="!sidebarCollapsed">Logout</span>
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-wrapper">
+
+    <!-- Top Bar -->
+    <header class="top-bar">
+      <button mat-icon-button (click)="toggleSidebar()" class="menu-toggle">
+        <mat-icon>{{ sidebarCollapsed ? 'menu' : 'menu_open' }}</mat-icon>
+      </button>
+
+      <div class="user-info">
+        <div class="user-avatar">{{ getInitials() }}</div>
+        <span class="user-name">{{ fullName || loginID }}</span>
+      </div>
+    </header>
+
+    <!-- Page Content -->
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+</div>

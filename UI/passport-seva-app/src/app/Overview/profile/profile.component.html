@@ -1,0 +1,38 @@
+<div class="page-container">
+
+  <h2 class="page-title">My Applications</h2>
+
+  <div *ngIf="loading" class="loading">Loading applications...</div>
+  <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+
+  <table *ngIf="!loading && applications.length" class="app-table">
+    <thead>
+      <tr>
+        <th>Application No</th>
+        <th>Type</th>
+        <th>Passport</th>
+        <th>Status</th>
+        <th>Submitted</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let app of applications">
+        <td>{{ app.ApplicationNumber }}</td>
+        <td>{{ app.ApplicationType }}</td>
+        <td>{{ app.PassportType }}</td>
+        <td>
+          <span class="status-pill"
+                [style.background]="app.StatusColor">
+            {{ app.Status }}
+          </span>
+        </td>
+        <td>{{ app.SubmittedAt | date:'mediumDate' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && !applications.length" class="empty">
+    No applications found.
+  </div>
+</div>

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="passportModelStoreContainer" CdmEntityContainer="passportEntities">
+    <EntitySetMapping Name="Applicants">
+      <EntityTypeMapping TypeName="passportModel.Applicant">
+        <MappingFragment StoreEntitySet="Applicant">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+          <ScalarProperty Name="DateOfRegistration" ColumnName="DateOfRegistration" />
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationForms">
+      <EntityTypeMapping TypeName="passportModel.ApplicationForm">
+        <MappingFragment StoreEntitySet="ApplicationForm">
+          <ScalarProperty Name="ValidityRequired" ColumnName="ValidityRequired" />
+          <ScalarProperty Name="BookletType" ColumnName="BookletType" />
+          <ScalarProperty Name="PassportType" ColumnName="PassportType" />
+          <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+          <ScalarProperty Name="MaritalStatus" ColumnName="MaritalStatus" />
+          <ScalarProperty Name="PlaceOfBirth" ColumnName="PlaceOfBirth" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="ApplicantID" ColumnName="ApplicantID" />
+          <ScalarProperty Name="ApplicationType" ColumnName="ApplicationType" />
+          <ScalarProperty Name="SchemeType" ColumnName="SchemeType" />
+          <ScalarProperty Name="CurrentStatus" ColumnName="CurrentStatus" />
+          <ScalarProperty Name="DateOfSubmission" ColumnName="DateOfSubmission" />
+          <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+          <ScalarProperty Name="GrantingDecisionDate" ColumnName="GrantingDecisionDate" />
+          <ScalarProperty Name="GrantingOfficerID" ColumnName="GrantingOfficerID" />
+          <ScalarProperty Name="PVCompletedDate" ColumnName="PVCompletedDate" />
+          <ScalarProperty Name="ApplicationCloseDate" ColumnName="ApplicationCloseDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApplicationStatusHistories">
+      <EntityTypeMapping TypeName="passportModel.ApplicationStatusHistory">
+        <MappingFragment StoreEntitySet="ApplicationStatusHistory">
+          <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+          <ScalarProperty Name="StatusMessage" ColumnName="StatusMessage" />
+          <ScalarProperty Name="ChangedOn" ColumnName="ChangedOn" />
+          <ScalarProperty Name="ChangedBy" ColumnName="ChangedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppointmentSchedules">
+      <EntityTypeMapping TypeName="passportModel.AppointmentSchedule">
+        <MappingFragment StoreEntitySet="AppointmentSchedule">
+          <ScalarProperty Name="ScheduleID" ColumnName="ScheduleID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="PSKLocationID" ColumnName="PSKLocationID" />
+          <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+          <ScalarProperty Name="AppointmentTime" ColumnName="AppointmentTime" />
+          <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BiometricDatas">
+      <EntityTypeMapping TypeName="passportModel.BiometricData">
+        <MappingFragment StoreEntitySet="BiometricData">
+          <ScalarProperty Name="BiometricID" ColumnName="BiometricID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="PhotoReference" ColumnName="PhotoReference" />
+          <ScalarProperty Name="FingerprintReference" ColumnName="FingerprintReference" />
+          <ScalarProperty Name="CaptureTimestamp" ColumnName="CaptureTimestamp" />
+          <ScalarProperty Name="CaptureDeviceID" ColumnName="CaptureDeviceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DispatchLogs">
+      <EntityTypeMapping TypeName="passportModel.DispatchLog">
+        <MappingFragment StoreEntitySet="DispatchLog">
+          <ScalarProperty Name="DispatchID" ColumnName="DispatchID" />
+          <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+          <ScalarProperty Name="ConsignmentNumber" ColumnName="ConsignmentNumber" />
+          <ScalarProperty Name="DispatchDate" ColumnName="DispatchDate" />
+          <ScalarProperty Name="CourierAgency" ColumnName="CourierAgency" />
+          <ScalarProperty Name="DeliveryStatus" ColumnName="DeliveryStatus" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="DeliveryFailureReason" ColumnName="DeliveryFailureReason" />
+          <ScalarProperty Name="RTSReceivedDate" ColumnName="RTSReceivedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentChecklists">
+      <EntityTypeMapping TypeName="passportModel.DocumentChecklist">
+        <MappingFragment StoreEntitySet="DocumentChecklist">
+          <ScalarProperty Name="DocCheckID" ColumnName="DocCheckID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="RequiredFlag" ColumnName="RequiredFlag" />
+          <ScalarProperty Name="SubmittedFlag" ColumnName="SubmittedFlag" />
+          <ScalarProperty Name="VerifiedFlag" ColumnName="VerifiedFlag" />
+          <ScalarProperty Name="DeficiencyDetails" ColumnName="DeficiencyDetails" />
+          <ScalarProperty Name="VerificationTimestamp" ColumnName="VerificationTimestamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FileForwardingLogs">
+      <EntityTypeMapping TypeName="passportModel.FileForwardingLog">
+        <MappingFragment StoreEntitySet="FileForwardingLog">
+          <ScalarProperty Name="ForwardLogID" ColumnName="ForwardLogID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="ForwardingDate" ColumnName="ForwardingDate" />
+          <ScalarProperty Name="FromAuthority" ColumnName="FromAuthority" />
+          <ScalarProperty Name="ToAuthority" ColumnName="ToAuthority" />
+          <ScalarProperty Name="ForwardingPurpose" ColumnName="ForwardingPurpose" />
+          <ScalarProperty Name="TrackingReference" ColumnName="TrackingReference" />
+          <ScalarProperty Name="ExpectedReturnDate" ColumnName="ExpectedReturnDate" />
+          <ScalarProperty Name="ActualReturnDate" ColumnName="ActualReturnDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PassportBooklets">
+      <EntityTypeMapping TypeName="passportModel.PassportBooklet">
+        <MappingFragment StoreEntitySet="PassportBooklet">
+          <ScalarProperty Name="PassportID" ColumnName="PassportID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+          <ScalarProperty Name="BookletType" ColumnName="BookletType" />
+          <ScalarProperty Name="BookletSize" ColumnName="BookletSize" />
+          <ScalarProperty Name="DateOfIssue" ColumnName="DateOfIssue" />
+          <ScalarProperty Name="DateOfExpiry" ColumnName="DateOfExpiry" />
+          <ScalarProperty Name="PrintingUnitID" ColumnName="PrintingUnitID" />
+          <ScalarProperty Name="PrintingDate" ColumnName="PrintingDate" />
+          <ScalarProperty Name="QualityControlStatus" ColumnName="QualityControlStatus" />
+          <ScalarProperty Name="QCInspectorID" ColumnName="QCInspectorID" />
+          <ScalarProperty Name="ePassportChipStatus" ColumnName="ePassportChipStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentTransactions">
+      <EntityTypeMapping TypeName="passportModel.PaymentTransaction">
+        <MappingFragment StoreEntitySet="PaymentTransaction">
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="PaymentAmount" ColumnName="PaymentAmount" />
+          <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+          <ScalarProperty Name="PaymentStatus" ColumnName="PaymentStatus" />
+          <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PoliceVerificationReports">
+      <EntityTypeMapping TypeName="passportModel.PoliceVerificationReport">
+        <MappingFragment StoreEntitySet="PoliceVerificationReport">
+          <ScalarProperty Name="PVReportID" ColumnName="PVReportID" />
+          <ScalarProperty Name="PVRequestID" ColumnName="PVRequestID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="ReportDate" ColumnName="ReportDate" />
+          <ScalarProperty Name="VerificationOutcome" ColumnName="VerificationOutcome" />
+          <ScalarProperty Name="AddressVerifiedFlag" ColumnName="AddressVerifiedFlag" />
+          <ScalarProperty Name="BackgroundClearFlag" ColumnName="BackgroundClearFlag" />
+          <ScalarProperty Name="ReportDetails" ColumnName="ReportDetails" />
+          <ScalarProperty Name="InvestigatingOfficerID" ColumnName="InvestigatingOfficerID" />
+          <ScalarProperty Name="DateOfVisit" ColumnName="DateOfVisit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PoliceVerificationRequests">
+      <EntityTypeMapping TypeName="passportModel.PoliceVerificationRequest">
+        <MappingFragment StoreEntitySet="PoliceVerificationRequest">
+          <ScalarProperty Name="PVRequestID" ColumnName="PVRequestID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="PoliceStationCode" ColumnName="PoliceStationCode" />
+          <ScalarProperty Name="VerificationType" ColumnName="VerificationType" />
+          <ScalarProperty Name="PVSendStatus" ColumnName="PVSendStatus" />
+          <ScalarProperty Name="TrackingID" ColumnName="TrackingID" />
+          <ScalarProperty Name="TargetCompletionDate" ColumnName="TargetCompletionDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSKDecisionDetails">
+      <EntityTypeMapping TypeName="passportModel.PSKDecisionDetail">
+        <MappingFragment StoreEntitySet="PSKDecisionDetail">
+          <ScalarProperty Name="DecisionID" ColumnName="DecisionID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="DecisionOutcome" ColumnName="DecisionOutcome" />
+          <ScalarProperty Name="DecisionReason" ColumnName="DecisionReason" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="DecisionTimestamp" ColumnName="DecisionTimestamp" />
+          <ScalarProperty Name="GrantingOfficerID" ColumnName="GrantingOfficerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PSKVisitDetails">
+      <EntityTypeMapping TypeName="passportModel.PSKVisitDetail">
+        <MappingFragment StoreEntitySet="PSKVisitDetail">
+          <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+          <ScalarProperty Name="ARN" ColumnName="ARN" />
+          <ScalarProperty Name="PSKLocationID" ColumnName="PSKLocationID" />
+          <ScalarProperty Name="ActualVisitTime" ColumnName="ActualVisitTime" />
+          <ScalarProperty Name="TokenNumber" ColumnName="TokenNumber" />
+          <ScalarProperty Name="CounterA_Status" ColumnName="CounterA_Status" />
+          <ScalarProperty Name="CounterA_OfficerID" ColumnName="CounterA_OfficerID" />
+          <ScalarProperty Name="CounterB_Status" ColumnName="CounterB_Status" />
+          <ScalarProperty Name="CounterB_OfficerID" ColumnName="CounterB_OfficerID" />
+          <ScalarProperty Name="CounterC_Status" ColumnName="CounterC_Status" />
+          <ScalarProperty Name="CounterC_OfficerID" ColumnName="CounterC_OfficerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AppUsers">
+      <EntityTypeMapping TypeName="passportModel.AppUser">
+        <MappingFragment StoreEntitySet="AppUser">
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="DateRegistered" ColumnName="DateRegistered" />
+          <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
+          <ScalarProperty Name="RegistrationType" ColumnName="RegistrationType" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Salt" ColumnName="Salt" />
+          <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+          <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PassportApplications">
+      <EntityTypeMapping TypeName="passportModel.PassportApplication">
+        <MappingFragment StoreEntitySet="PassportApplication">
+          <ScalarProperty Name="DateSubmitted" ColumnName="DateSubmitted" />
+          <ScalarProperty Name="DateStarted" ColumnName="DateStarted" />
+          <ScalarProperty Name="ApplicationStatus" ColumnName="ApplicationStatus" />
+          <ScalarProperty Name="ServiceType" ColumnName="ServiceType" />
+          <ScalarProperty Name="FileNumber" ColumnName="FileNumber" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ApplicationID" ColumnName="ApplicationID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_ApplicationPassport" FunctionName="passportModel.Store.SP_ApplicationPassport" />
+  </EntityContainerMapping>
+</Mapping>

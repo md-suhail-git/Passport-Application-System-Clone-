@@ -1,0 +1,547 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PassportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ApplicationHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="ChangedByUserID" Type="int" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Applications">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="CitizenID" Type="int" Nullable="false" />
+    <Property Name="PassportTypeID" Type="int" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="OfficeID" Type="int" />
+    <Property Name="ApplicationType" Type="nvarchar" MaxLength="20" />
+    <Property Name="PreviousPassportNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="EmergencyContactName" Type="nvarchar" MaxLength="200" />
+    <Property Name="EmergencyContactPhone" Type="nvarchar" MaxLength="20" />
+    <Property Name="TravelPurpose" Type="nvarchar" MaxLength="500" />
+    <Property Name="ExpectedTravelDate" Type="date" />
+    <Property Name="AmountPaid" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="PaymentDate" Type="datetime2" Precision="7" />
+    <Property Name="PaymentReference" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubmittedAt" Type="datetime2" Precision="7" />
+    <Property Name="ApprovedAt" Type="datetime2" Precision="7" />
+    <Property Name="RejectedAt" Type="datetime2" Precision="7" />
+    <Property Name="RejectionReason" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+    <Property Name="UpdatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="ApplicationStatuses">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StatusName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="DisplayOrder" Type="int" />
+    <Property Name="ColorCode" Type="nvarchar" MaxLength="7" />
+  </EntityType>
+  <EntityType Name="Appointments">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="OfficeID" Type="int" Nullable="false" />
+    <Property Name="AppointmentDate" Type="date" Nullable="false" />
+    <Property Name="TimeSlot" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Purpose" Type="nvarchar" MaxLength="50" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+    <Property Name="Notes" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="AuditLogs">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Action" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="TableName" Type="nvarchar" MaxLength="50" />
+    <Property Name="RecordID" Type="int" />
+    <Property Name="OldValues" Type="nvarchar(max)" />
+    <Property Name="NewValues" Type="nvarchar(max)" />
+    <Property Name="IPAddress" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserAgent" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Citizens">
+    <Key>
+      <PropertyRef Name="CitizenID" />
+    </Key>
+    <Property Name="CitizenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NationalID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="Gender" Type="char" MaxLength="1" />
+    <Property Name="PlaceOfBirth" Type="nvarchar" MaxLength="200" />
+    <Property Name="Nationality" Type="nvarchar" MaxLength="100" />
+    <Property Name="MaritalStatus" Type="nvarchar" MaxLength="20" />
+    <Property Name="Occupation" Type="nvarchar" MaxLength="100" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="PhotoPath" Type="nvarchar" MaxLength="500" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+    <Property Name="UpdatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Documents">
+    <Key>
+      <PropertyRef Name="DocumentID" />
+    </Key>
+    <Property Name="DocumentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="DocumentTypeID" Type="int" Nullable="false" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FileSize" Type="int" />
+    <Property Name="MimeType" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsVerified" Type="bit" />
+    <Property Name="VerifiedByUserID" Type="int" />
+    <Property Name="VerifiedAt" Type="datetime2" Precision="7" />
+    <Property Name="UploadedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="DocumentTypes">
+    <Key>
+      <PropertyRef Name="DocumentTypeID" />
+    </Key>
+    <Property Name="DocumentTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="IsRequired" Type="bit" />
+    <Property Name="MaxFileSizeMB" Type="int" />
+  </EntityType>
+  <EntityType Name="Offices">
+    <Key>
+      <PropertyRef Name="OfficeID" />
+    </Key>
+    <Property Name="OfficeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OfficeName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="City" Type="nvarchar" MaxLength="100" />
+    <Property Name="State" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostalCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Passports">
+    <Key>
+      <PropertyRef Name="PassportID" />
+    </Key>
+    <Property Name="PassportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PassportNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="ApplicationID" Type="int" Nullable="false" />
+    <Property Name="CitizenID" Type="int" Nullable="false" />
+    <Property Name="PassportTypeID" Type="int" Nullable="false" />
+    <Property Name="IssueDate" Type="date" Nullable="false" />
+    <Property Name="ExpiryDate" Type="date" Nullable="false" />
+    <Property Name="IssuingOfficeID" Type="int" />
+    <Property Name="Status" Type="nvarchar" MaxLength="20" />
+    <Property Name="MRZLine1" Type="nvarchar" MaxLength="44" />
+    <Property Name="MRZLine2" Type="nvarchar" MaxLength="44" />
+    <Property Name="PrintedAt" Type="datetime2" Precision="7" />
+    <Property Name="CollectedAt" Type="datetime2" Precision="7" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="PassportTypes">
+    <Key>
+      <PropertyRef Name="PassportTypeID" />
+    </Key>
+    <Property Name="PassportTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="255" />
+    <Property Name="ValidityYears" Type="int" Nullable="false" />
+    <Property Name="Fee" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PasswordHash" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="20" />
+    <Property Name="CitizenID" Type="int" />
+    <Property Name="OfficeID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="LastLogin" Type="datetime2" Precision="7" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <EntityType Name="UserTokens">
+    <Key>
+      <PropertyRef Name="TokenID" />
+    </Key>
+    <Property Name="TokenID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="JwtToken" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IssuedAt" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ExpiryAt" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="IsRevoked" Type="bit" />
+    <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+  </EntityType>
+  <Association Name="FK__Applicati__Appli__02FC7413">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="ApplicationHistory" Type="Self.ApplicationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="ApplicationHistory">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Chang__04E4BC85">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ApplicationHistory" Type="Self.ApplicationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ApplicationHistory">
+        <PropertyRef Name="ChangedByUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Citiz__656C112C">
+    <End Role="Citizens" Type="Self.Citizens" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizens">
+        <PropertyRef Name="CitizenID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="CitizenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Offic__68487DD7">
+    <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Passp__66603565">
+    <End Role="PassportTypes" Type="Self.PassportTypes" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassportTypes">
+        <PropertyRef Name="PassportTypeID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="PassportTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Statu__03F0984C">
+    <End Role="ApplicationStatuses" Type="Self.ApplicationStatuses" Multiplicity="1" />
+    <End Role="ApplicationHistory" Type="Self.ApplicationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationStatuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="ApplicationHistory">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Statu__6754599E">
+    <End Role="ApplicationStatuses" Type="Self.ApplicationStatuses" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Applications" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationStatuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Appli__7C4F7684">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Offic__7D439ABD">
+    <End Role="Offices" Type="Self.Offices" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AuditLogs__UserI__08B54D69">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="AuditLogs" Type="Self.AuditLogs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="AuditLogs">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__Appli__6D0D32F4">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__Docum__6E01572D">
+    <End Role="DocumentTypes" Type="Self.DocumentTypes" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentTypes">
+        <PropertyRef Name="DocumentTypeID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="DocumentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__Verif__6FE99F9F">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Documents" Type="Self.Documents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="VerifiedByUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Appli__74AE54BC">
+    <End Role="Applications" Type="Self.Applications" Multiplicity="1" />
+    <End Role="Passports" Type="Self.Passports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Citiz__75A278F5">
+    <End Role="Citizens" Type="Self.Citizens" Multiplicity="1" />
+    <End Role="Passports" Type="Self.Passports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizens">
+        <PropertyRef Name="CitizenID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="CitizenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Issui__778AC167">
+    <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+    <End Role="Passports" Type="Self.Passports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="IssuingOfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Passp__76969D2E">
+    <End Role="PassportTypes" Type="Self.PassportTypes" Multiplicity="1" />
+    <End Role="Passports" Type="Self.Passports" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassportTypes">
+        <PropertyRef Name="PassportTypeID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="PassportTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__CitizenID__5EBF139D">
+    <End Role="Citizens" Type="Self.Citizens" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizens">
+        <PropertyRef Name="CitizenID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="CitizenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__OfficeID__5FB337D6">
+    <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__UserToken__UserI__0E6E26BF">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="UserTokens" Type="Self.UserTokens" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserTokens">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_RegisterUser_WithJWT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="FullName" Type="nvarchar" Mode="In" />
+    <Parameter Name="Email" Type="nvarchar" Mode="In" />
+    <Parameter Name="LoginID" Type="nvarchar" Mode="In" />
+    <Parameter Name="PasswordHash" Type="varbinary" Mode="In" />
+    <Parameter Name="PasswordSalt" Type="varbinary" Mode="In" />
+    <Parameter Name="Nationality" Type="nvarchar" Mode="In" />
+    <Parameter Name="JwtToken" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="TokenExpiryMinutes" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="PassportModelStoreContainer">
+    <EntitySet Name="ApplicationHistory" EntityType="Self.ApplicationHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Applications" EntityType="Self.Applications" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationStatuses" EntityType="Self.ApplicationStatuses" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AuditLogs" EntityType="Self.AuditLogs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Citizens" EntityType="Self.Citizens" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Documents" EntityType="Self.Documents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentTypes" EntityType="Self.DocumentTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Passports" EntityType="Self.Passports" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PassportTypes" EntityType="Self.PassportTypes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserTokens" EntityType="Self.UserTokens" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Applicati__Appli__02FC7413" Association="Self.FK__Applicati__Appli__02FC7413">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="ApplicationHistory" EntitySet="ApplicationHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Chang__04E4BC85" Association="Self.FK__Applicati__Chang__04E4BC85">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ApplicationHistory" EntitySet="ApplicationHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Citiz__656C112C" Association="Self.FK__Applicati__Citiz__656C112C">
+      <End Role="Citizens" EntitySet="Citizens" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Offic__68487DD7" Association="Self.FK__Applicati__Offic__68487DD7">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Passp__66603565" Association="Self.FK__Applicati__Passp__66603565">
+      <End Role="PassportTypes" EntitySet="PassportTypes" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Statu__03F0984C" Association="Self.FK__Applicati__Statu__03F0984C">
+      <End Role="ApplicationStatuses" EntitySet="ApplicationStatuses" />
+      <End Role="ApplicationHistory" EntitySet="ApplicationHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Statu__6754599E" Association="Self.FK__Applicati__Statu__6754599E">
+      <End Role="ApplicationStatuses" EntitySet="ApplicationStatuses" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Appli__7C4F7684" Association="Self.FK__Appointme__Appli__7C4F7684">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Offic__7D439ABD" Association="Self.FK__Appointme__Offic__7D439ABD">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AuditLogs__UserI__08B54D69" Association="Self.FK__AuditLogs__UserI__08B54D69">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AuditLogs" EntitySet="AuditLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__Appli__6D0D32F4" Association="Self.FK__Documents__Appli__6D0D32F4">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__Docum__6E01572D" Association="Self.FK__Documents__Docum__6E01572D">
+      <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__Verif__6FE99F9F" Association="Self.FK__Documents__Verif__6FE99F9F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Appli__74AE54BC" Association="Self.FK__Passports__Appli__74AE54BC">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Citiz__75A278F5" Association="Self.FK__Passports__Citiz__75A278F5">
+      <End Role="Citizens" EntitySet="Citizens" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Issui__778AC167" Association="Self.FK__Passports__Issui__778AC167">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Passp__76969D2E" Association="Self.FK__Passports__Passp__76969D2E">
+      <End Role="PassportTypes" EntitySet="PassportTypes" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__CitizenID__5EBF139D" Association="Self.FK__Users__CitizenID__5EBF139D">
+      <End Role="Citizens" EntitySet="Citizens" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__OfficeID__5FB337D6" Association="Self.FK__Users__OfficeID__5FB337D6">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__UserToken__UserI__0E6E26BF" Association="Self.FK__UserToken__UserI__0E6E26BF">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="UserTokens" EntitySet="UserTokens" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

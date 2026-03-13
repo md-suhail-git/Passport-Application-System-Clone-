@@ -1,0 +1,128 @@
+<div class="registration-container">
+  <h2>PassPort Registration</h2>
+
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+    <div class="form-group">
+      <label>Register to apply at *</label><br>
+      <input type="radio" formControlName="RegistrationType" value="CPV_DELHI"> CPV Delhi(Others)
+      <input type="radio" formControlName="RegistrationType" value="PASSPORT_OFFICE"> Passport Office
+    </div>
+
+    <div class="form-group">
+      <label for="fullName">Full Name *</label>
+      <input id="fullName" type="text" formControlName="FullName" class="form-control">
+
+      <div *ngIf="registrationForm.get('fullName')?.hasError('required')
+                    && registrationForm.get('fullName')?.touched"
+             class="error-msg">
+        Full Name is required.
+      </div>
+     <div *ngIf="
+  registrationForm.get('fullName')?.errors?.['invalidFullName'] &&
+  registrationForm.get('fullName')?.touched
+" class="error-msg">
+  Initials and honorifics (e.g. Dr., Col.) are not allowed.
+</div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="emailId">Email ID *</label>
+      <input id="emailId" type="email" formControlName="EmailAddress" class="form-control">
+
+      <div *ngIf="registrationForm.get('emailId')?.hasError('required')
+                    && registrationForm.get('emailId')?.touched"
+             class="error-msg">
+        Email ID is required.
+      </div>
+
+      <div *ngIf="registrationForm.get('emailId')?.hasError('email')
+                    && registrationForm.get('emailId')?.touched"
+             class="error-msg">
+        Enter a valid email address.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Do you want your Login Id to be same as E-mail Id? *</label><br>
+      <input type="radio" formControlName="isLoginSameAsEmail" value="Yes"> Yes
+      <input type="radio" formControlName="isLoginSameAsEmail" value="No"> No
+    </div>
+
+    <div class="form-group">
+      <label for="loginId">Login ID *</label>
+      <input id="loginId" type="text" formControlName="LoginID" class="form-control">
+
+      <button type="button" (click)="checkLoginIdAvailability()" [disabled]="registrationForm.get('loginId')?.disabled">
+        Check Availability
+      </button>
+
+      <small *ngIf="loginIdCheckMessage"
+             [ngClass]="{
+               'available': isLoginIdAvailable,
+               'not-available': !isLoginIdAvailable
+             }">
+        {{ loginIdCheckMessage }}
+      </small>
+      
+      <div *ngIf="registrationForm.get('loginId')?.hasError('required') 
+                   && registrationForm.get('loginId')?.touched 
+                   && registrationForm.get('loginId')?.enabled"
+            class="error-msg">
+          Login ID is required.
+      </div>
+      <div *ngIf="registrationForm.get('loginId')?.hasError('minlength') 
+                   && registrationForm.get('loginId')?.touched 
+                   && registrationForm.get('loginId')?.enabled"
+            class="error-msg">
+          Login ID must be at least 6 characters.
+      </div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password *</label>
+      <input id="password" type="password" formControlName="password" class="form-control">
+
+     <div *ngIf="
+  registrationForm.get('password')?.errors?.['complexity'] &&
+  registrationForm.get('password')?.touched
+" class="error-msg">
+  Password must contain at least 1 uppercase, 1 lowercase, 1 number, and 1 special character.
+</div>
+
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password *</label>
+      <input id="confirmPassword" type="password"
+             formControlName="confirmPassword"
+             class="form-control">
+
+      <div *ngIf="registrationForm.hasError('mismatch')
+                    && registrationForm.get('confirmPassword')?.touched"
+             class="error-msg">
+        Passwords must match.
+      </div>
+    </div>
+
+    <div *ngIf="submissionError" class="error-msg submission-error">
+      {{ submissionError }}
+    </div>
+
+    <button type="button"
+            class="btn btn-secondary"
+            (click)="registrationForm.reset()">
+      Clear
+    </button>
+
+    <button
+  type="submit"
+  class="btn btn-primary"
+  [disabled]="registrationForm.invalid || !isLoginIdAvailable || isSubmitting">
+  Sign Up
+</button>
+
+  </form>
+</div>

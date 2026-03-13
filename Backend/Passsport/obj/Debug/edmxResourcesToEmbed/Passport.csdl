@@ -1,0 +1,622 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PassportModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ApplicationHistory">
+    <Key>
+      <PropertyRef Name="HistoryID" />
+    </Key>
+    <Property Name="HistoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="ChangedByUserID" Type="Int32" />
+    <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Application" Relationship="Self.FK__Applicati__Appli__02FC7413" FromRole="ApplicationHistory" ToRole="Applications" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Applicati__Chang__04E4BC85" FromRole="ApplicationHistory" ToRole="Users" />
+    <NavigationProperty Name="ApplicationStatus" Relationship="Self.FK__Applicati__Statu__03F0984C" FromRole="ApplicationHistory" ToRole="ApplicationStatuses" />
+  </EntityType>
+  <EntityType Name="Application">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CitizenID" Type="Int32" Nullable="false" />
+    <Property Name="PassportTypeID" Type="Int32" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="OfficeID" Type="Int32" />
+    <Property Name="ApplicationType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PreviousPassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Name="EmergencyContactName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EmergencyContactPhone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TravelPurpose" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ExpectedTravelDate" Type="DateTime" Precision="0" />
+    <Property Name="AmountPaid" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="PaymentDate" Type="DateTime" Precision="7" />
+    <Property Name="PaymentReference" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubmittedAt" Type="DateTime" Precision="7" />
+    <Property Name="ApprovedAt" Type="DateTime" Precision="7" />
+    <Property Name="RejectedAt" Type="DateTime" Precision="7" />
+    <Property Name="RejectionReason" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="ApplicationHistories" Relationship="Self.FK__Applicati__Appli__02FC7413" FromRole="Applications" ToRole="ApplicationHistory" />
+    <NavigationProperty Name="Citizen" Relationship="Self.FK__Applicati__Citiz__656C112C" FromRole="Applications" ToRole="Citizens" />
+    <NavigationProperty Name="Office" Relationship="Self.FK__Applicati__Offic__68487DD7" FromRole="Applications" ToRole="Offices" />
+    <NavigationProperty Name="PassportType" Relationship="Self.FK__Applicati__Passp__66603565" FromRole="Applications" ToRole="PassportTypes" />
+    <NavigationProperty Name="ApplicationStatus" Relationship="Self.FK__Applicati__Statu__6754599E" FromRole="Applications" ToRole="ApplicationStatuses" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Appli__7C4F7684" FromRole="Applications" ToRole="Appointments" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK__Documents__Appli__6D0D32F4" FromRole="Applications" ToRole="Documents" />
+    <NavigationProperty Name="Passports" Relationship="Self.FK__Passports__Appli__74AE54BC" FromRole="Applications" ToRole="Passports" />
+  </EntityType>
+  <EntityType Name="ApplicationStatus">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="StatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" />
+    <Property Name="ColorCode" Type="String" MaxLength="7" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ApplicationHistories" Relationship="Self.FK__Applicati__Statu__03F0984C" FromRole="ApplicationStatuses" ToRole="ApplicationHistory" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Statu__6754599E" FromRole="ApplicationStatuses" ToRole="Applications" />
+  </EntityType>
+  <EntityType Name="Appointment">
+    <Key>
+      <PropertyRef Name="AppointmentID" />
+    </Key>
+    <Property Name="AppointmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="OfficeID" Type="Int32" Nullable="false" />
+    <Property Name="AppointmentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TimeSlot" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Purpose" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Notes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Application" Relationship="Self.FK__Appointme__Appli__7C4F7684" FromRole="Appointments" ToRole="Applications" />
+    <NavigationProperty Name="Office" Relationship="Self.FK__Appointme__Offic__7D439ABD" FromRole="Appointments" ToRole="Offices" />
+  </EntityType>
+  <EntityType Name="AppUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LoginID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PasswordHash" Type="Binary" MaxLength="256" FixedLength="false" />
+    <Property Name="Salt" Type="Binary" Nullable="false" MaxLength="128" FixedLength="false" />
+    <Property Name="FullName" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RegistrationType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AccountStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DateRegistered" Type="DateTime" Precision="3" />
+    <Property Name="LastLogin" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="UserTokens" Relationship="Self.FK_UserTokens_AppUser" FromRole="AppUser" ToRole="UserTokens" />
+  </EntityType>
+  <EntityType Name="AuditLog">
+    <Key>
+      <PropertyRef Name="LogID" />
+    </Key>
+    <Property Name="LogID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TableName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RecordID" Type="Int32" />
+    <Property Name="OldValues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="NewValues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IPAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserAgent" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="User" Relationship="Self.FK__AuditLogs__UserI__08B54D69" FromRole="AuditLogs" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Citizen">
+    <Key>
+      <PropertyRef Name="CitizenID" />
+    </Key>
+    <Property Name="CitizenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NationalID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="PlaceOfBirth" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Nationality" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MaritalStatus" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Occupation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PhotoPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <Property Name="UpdatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Citiz__656C112C" FromRole="Citizens" ToRole="Applications" />
+    <NavigationProperty Name="Passports" Relationship="Self.FK__Passports__Citiz__75A278F5" FromRole="Citizens" ToRole="Passports" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__CitizenID__5EBF139D" FromRole="Citizens" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="DocumentID" />
+    </Key>
+    <Property Name="DocumentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="DocumentTypeID" Type="Int32" Nullable="false" />
+    <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FileSize" Type="Int32" />
+    <Property Name="MimeType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsVerified" Type="Boolean" />
+    <Property Name="VerifiedByUserID" Type="Int32" />
+    <Property Name="VerifiedAt" Type="DateTime" Precision="7" />
+    <Property Name="UploadedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Application" Relationship="Self.FK__Documents__Appli__6D0D32F4" FromRole="Documents" ToRole="Applications" />
+    <NavigationProperty Name="DocumentType" Relationship="Self.FK__Documents__Docum__6E01572D" FromRole="Documents" ToRole="DocumentTypes" />
+    <NavigationProperty Name="User" Relationship="Self.FK__Documents__Verif__6FE99F9F" FromRole="Documents" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="DocumentType">
+    <Key>
+      <PropertyRef Name="DocumentTypeID" />
+    </Key>
+    <Property Name="DocumentTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="IsRequired" Type="Boolean" />
+    <Property Name="MaxFileSizeMB" Type="Int32" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK__Documents__Docum__6E01572D" FromRole="DocumentTypes" ToRole="Documents" />
+  </EntityType>
+  <EntityType Name="Office">
+    <Key>
+      <PropertyRef Name="OfficeID" />
+    </Key>
+    <Property Name="OfficeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OfficeName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Offic__68487DD7" FromRole="Offices" ToRole="Applications" />
+    <NavigationProperty Name="Appointments" Relationship="Self.FK__Appointme__Offic__7D439ABD" FromRole="Offices" ToRole="Appointments" />
+    <NavigationProperty Name="Passports" Relationship="Self.FK__Passports__Issui__778AC167" FromRole="Offices" ToRole="Passports" />
+    <NavigationProperty Name="Users" Relationship="Self.FK__Users__OfficeID__5FB337D6" FromRole="Offices" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Passport">
+    <Key>
+      <PropertyRef Name="PassportID" />
+    </Key>
+    <Property Name="PassportID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PassportNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApplicationID" Type="Int32" Nullable="false" />
+    <Property Name="CitizenID" Type="Int32" Nullable="false" />
+    <Property Name="PassportTypeID" Type="Int32" Nullable="false" />
+    <Property Name="IssueDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="ExpiryDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="IssuingOfficeID" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MRZLine1" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+    <Property Name="MRZLine2" Type="String" MaxLength="44" FixedLength="false" Unicode="true" />
+    <Property Name="PrintedAt" Type="DateTime" Precision="7" />
+    <Property Name="CollectedAt" Type="DateTime" Precision="7" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Application" Relationship="Self.FK__Passports__Appli__74AE54BC" FromRole="Passports" ToRole="Applications" />
+    <NavigationProperty Name="Citizen" Relationship="Self.FK__Passports__Citiz__75A278F5" FromRole="Passports" ToRole="Citizens" />
+    <NavigationProperty Name="Office" Relationship="Self.FK__Passports__Issui__778AC167" FromRole="Passports" ToRole="Offices" />
+    <NavigationProperty Name="PassportType" Relationship="Self.FK__Passports__Passp__76969D2E" FromRole="Passports" ToRole="PassportTypes" />
+  </EntityType>
+  <EntityType Name="PassportType">
+    <Key>
+      <PropertyRef Name="PassportTypeID" />
+    </Key>
+    <Property Name="PassportTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="ValidityYears" Type="Int32" Nullable="false" />
+    <Property Name="Fee" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="Applications" Relationship="Self.FK__Applicati__Passp__66603565" FromRole="PassportTypes" ToRole="Applications" />
+    <NavigationProperty Name="Passports" Relationship="Self.FK__Passports__Passp__76969D2E" FromRole="PassportTypes" ToRole="Passports" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PasswordHash" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Role" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="CitizenID" Type="Int32" />
+    <Property Name="OfficeID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="LastLogin" Type="DateTime" Precision="7" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="ApplicationHistories" Relationship="Self.FK__Applicati__Chang__04E4BC85" FromRole="Users" ToRole="ApplicationHistory" />
+    <NavigationProperty Name="AuditLogs" Relationship="Self.FK__AuditLogs__UserI__08B54D69" FromRole="Users" ToRole="AuditLogs" />
+    <NavigationProperty Name="Citizen" Relationship="Self.FK__Users__CitizenID__5EBF139D" FromRole="Users" ToRole="Citizens" />
+    <NavigationProperty Name="Documents" Relationship="Self.FK__Documents__Verif__6FE99F9F" FromRole="Users" ToRole="Documents" />
+    <NavigationProperty Name="Office" Relationship="Self.FK__Users__OfficeID__5FB337D6" FromRole="Users" ToRole="Offices" />
+  </EntityType>
+  <EntityType Name="UserToken">
+    <Key>
+      <PropertyRef Name="TokenID" />
+    </Key>
+    <Property Name="TokenID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="JwtToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IssuedAt" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="ExpiryAt" Type="DateTime" Nullable="false" Precision="7" />
+    <Property Name="IsRevoked" Type="Boolean" />
+    <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+    <NavigationProperty Name="AppUser" Relationship="Self.FK_UserTokens_AppUser" FromRole="UserTokens" ToRole="AppUser" />
+  </EntityType>
+  <Association Name="FK__Applicati__Appli__02FC7413">
+    <End Role="Applications" Type="Self.Application" Multiplicity="1" />
+    <End Role="ApplicationHistory" Type="Self.ApplicationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="ApplicationHistory">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Chang__04E4BC85">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="ApplicationHistory" Type="Self.ApplicationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="ApplicationHistory">
+        <PropertyRef Name="ChangedByUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Statu__03F0984C">
+    <End Role="ApplicationStatuses" Type="Self.ApplicationStatus" Multiplicity="1" />
+    <End Role="ApplicationHistory" Type="Self.ApplicationHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationStatuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="ApplicationHistory">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Citiz__656C112C">
+    <End Role="Citizens" Type="Self.Citizen" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizens">
+        <PropertyRef Name="CitizenID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="CitizenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Offic__68487DD7">
+    <End Role="Offices" Type="Self.Office" Multiplicity="0..1" />
+    <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Passp__66603565">
+    <End Role="PassportTypes" Type="Self.PassportType" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassportTypes">
+        <PropertyRef Name="PassportTypeID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="PassportTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Applicati__Statu__6754599E">
+    <End Role="ApplicationStatuses" Type="Self.ApplicationStatus" Multiplicity="1" />
+    <End Role="Applications" Type="Self.Application" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationStatuses">
+        <PropertyRef Name="StatusID" />
+      </Principal>
+      <Dependent Role="Applications">
+        <PropertyRef Name="StatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Appli__7C4F7684">
+    <End Role="Applications" Type="Self.Application" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__Appli__6D0D32F4">
+    <End Role="Applications" Type="Self.Application" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Appli__74AE54BC">
+    <End Role="Applications" Type="Self.Application" Multiplicity="1" />
+    <End Role="Passports" Type="Self.Passport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applications">
+        <PropertyRef Name="ApplicationID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="ApplicationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointme__Offic__7D439ABD">
+    <End Role="Offices" Type="Self.Office" Multiplicity="1" />
+    <End Role="Appointments" Type="Self.Appointment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Appointments">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserTokens_AppUser">
+    <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+    <End Role="UserTokens" Type="Self.UserToken" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserTokens">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__AuditLogs__UserI__08B54D69">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="AuditLogs" Type="Self.AuditLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="AuditLogs">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Citiz__75A278F5">
+    <End Role="Citizens" Type="Self.Citizen" Multiplicity="1" />
+    <End Role="Passports" Type="Self.Passport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizens">
+        <PropertyRef Name="CitizenID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="CitizenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__CitizenID__5EBF139D">
+    <End Role="Citizens" Type="Self.Citizen" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Citizens">
+        <PropertyRef Name="CitizenID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="CitizenID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__Docum__6E01572D">
+    <End Role="DocumentTypes" Type="Self.DocumentType" Multiplicity="1" />
+    <End Role="Documents" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocumentTypes">
+        <PropertyRef Name="DocumentTypeID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="DocumentTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Documents__Verif__6FE99F9F">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Documents" Type="Self.Document" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Documents">
+        <PropertyRef Name="VerifiedByUserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Issui__778AC167">
+    <End Role="Offices" Type="Self.Office" Multiplicity="0..1" />
+    <End Role="Passports" Type="Self.Passport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="IssuingOfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Users__OfficeID__5FB337D6">
+    <End Role="Offices" Type="Self.Office" Multiplicity="0..1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Offices">
+        <PropertyRef Name="OfficeID" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="OfficeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Passports__Passp__76969D2E">
+    <End Role="PassportTypes" Type="Self.PassportType" Multiplicity="1" />
+    <End Role="Passports" Type="Self.Passport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassportTypes">
+        <PropertyRef Name="PassportTypeID" />
+      </Principal>
+      <Dependent Role="Passports">
+        <PropertyRef Name="PassportTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PassportEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ApplicationHistories" EntityType="Self.ApplicationHistory" />
+    <EntitySet Name="Applications" EntityType="Self.Application" />
+    <EntitySet Name="ApplicationStatuses" EntityType="Self.ApplicationStatus" />
+    <EntitySet Name="Appointments" EntityType="Self.Appointment" />
+    <EntitySet Name="AppUsers" EntityType="Self.AppUser" />
+    <EntitySet Name="AuditLogs" EntityType="Self.AuditLog" />
+    <EntitySet Name="Citizens" EntityType="Self.Citizen" />
+    <EntitySet Name="Documents" EntityType="Self.Document" />
+    <EntitySet Name="DocumentTypes" EntityType="Self.DocumentType" />
+    <EntitySet Name="Offices" EntityType="Self.Office" />
+    <EntitySet Name="Passports" EntityType="Self.Passport" />
+    <EntitySet Name="PassportTypes" EntityType="Self.PassportType" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserTokens" EntityType="Self.UserToken" />
+    <AssociationSet Name="FK__Applicati__Appli__02FC7413" Association="Self.FK__Applicati__Appli__02FC7413">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="ApplicationHistory" EntitySet="ApplicationHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Chang__04E4BC85" Association="Self.FK__Applicati__Chang__04E4BC85">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ApplicationHistory" EntitySet="ApplicationHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Statu__03F0984C" Association="Self.FK__Applicati__Statu__03F0984C">
+      <End Role="ApplicationStatuses" EntitySet="ApplicationStatuses" />
+      <End Role="ApplicationHistory" EntitySet="ApplicationHistories" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Citiz__656C112C" Association="Self.FK__Applicati__Citiz__656C112C">
+      <End Role="Citizens" EntitySet="Citizens" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Offic__68487DD7" Association="Self.FK__Applicati__Offic__68487DD7">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Passp__66603565" Association="Self.FK__Applicati__Passp__66603565">
+      <End Role="PassportTypes" EntitySet="PassportTypes" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Applicati__Statu__6754599E" Association="Self.FK__Applicati__Statu__6754599E">
+      <End Role="ApplicationStatuses" EntitySet="ApplicationStatuses" />
+      <End Role="Applications" EntitySet="Applications" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Appli__7C4F7684" Association="Self.FK__Appointme__Appli__7C4F7684">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__Appli__6D0D32F4" Association="Self.FK__Documents__Appli__6D0D32F4">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Appli__74AE54BC" Association="Self.FK__Passports__Appli__74AE54BC">
+      <End Role="Applications" EntitySet="Applications" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointme__Offic__7D439ABD" Association="Self.FK__Appointme__Offic__7D439ABD">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Appointments" EntitySet="Appointments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserTokens_AppUser" Association="Self.FK_UserTokens_AppUser">
+      <End Role="AppUser" EntitySet="AppUsers" />
+      <End Role="UserTokens" EntitySet="UserTokens" />
+    </AssociationSet>
+    <AssociationSet Name="FK__AuditLogs__UserI__08B54D69" Association="Self.FK__AuditLogs__UserI__08B54D69">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="AuditLogs" EntitySet="AuditLogs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Citiz__75A278F5" Association="Self.FK__Passports__Citiz__75A278F5">
+      <End Role="Citizens" EntitySet="Citizens" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__CitizenID__5EBF139D" Association="Self.FK__Users__CitizenID__5EBF139D">
+      <End Role="Citizens" EntitySet="Citizens" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__Docum__6E01572D" Association="Self.FK__Documents__Docum__6E01572D">
+      <End Role="DocumentTypes" EntitySet="DocumentTypes" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Documents__Verif__6FE99F9F" Association="Self.FK__Documents__Verif__6FE99F9F">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Documents" EntitySet="Documents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Issui__778AC167" Association="Self.FK__Passports__Issui__778AC167">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Users__OfficeID__5FB337D6" Association="Self.FK__Users__OfficeID__5FB337D6">
+      <End Role="Offices" EntitySet="Offices" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Passports__Passp__76969D2E" Association="Self.FK__Passports__Passp__76969D2E">
+      <End Role="PassportTypes" EntitySet="PassportTypes" />
+      <End Role="Passports" EntitySet="Passports" />
+    </AssociationSet>
+    <FunctionImport Name="SP_RegisterUser_WithJWT" ReturnType="Collection(PassportModel.SP_RegisterUser_WithJWT_Result)">
+      <Parameter Name="FullName" Mode="In" Type="String" />
+      <Parameter Name="Email" Mode="In" Type="String" />
+      <Parameter Name="LoginID" Mode="In" Type="String" />
+      <Parameter Name="PasswordHash" Mode="In" Type="Binary" />
+      <Parameter Name="PasswordSalt" Mode="In" Type="Binary" />
+      <Parameter Name="Nationality" Mode="In" Type="String" />
+      <Parameter Name="JwtToken" Mode="In" Type="String" />
+      <Parameter Name="TokenExpiryMinutes" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="SP_RegisterOrLoginUser" ReturnType="Collection(PassportModel.SP_RegisterOrLoginUser_Result)">
+      <Parameter Name="Mode" Mode="In" Type="String" />
+      <Parameter Name="LoginID" Mode="In" Type="String" />
+      <Parameter Name="PasswordHash" Mode="In" Type="Binary" />
+      <Parameter Name="Salt" Mode="In" Type="Binary" />
+      <Parameter Name="FullName" Mode="In" Type="String" />
+      <Parameter Name="EmailAddress" Mode="In" Type="String" />
+      <Parameter Name="RegistrationType" Mode="In" Type="String" />
+      <Parameter Name="JwtToken" Mode="In" Type="String" />
+      <Parameter Name="TokenExpiryMinutes" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="SP_RegisterUser_WithJWT_Result">
+    <Property Type="Int32" Name="Status" Nullable="false" />
+    <Property Type="String" Name="Message" Nullable="false" MaxLength="24" />
+  </ComplexType>
+  <ComplexType Name="SP_RegisterOrLoginUser_Result">
+    <Property Type="String" Name="Status" Nullable="false" MaxLength="6" />
+    <Property Type="String" Name="Message" Nullable="false" MaxLength="29" />
+  </ComplexType>
+</Schema>

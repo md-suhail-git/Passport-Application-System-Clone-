@@ -1,0 +1,518 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="passportModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Applicant">
+    <Key>
+      <PropertyRef Name="ApplicantID" />
+    </Key>
+    <Property Name="ApplicantID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Salt" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="MobileNumber" Type="varchar" MaxLength="15" />
+    <Property Name="DateOfRegistration" Type="datetime" />
+    <Property Name="LastLogin" Type="datetime" />
+    <Property Name="UserID" Type="int" />
+  </EntityType>
+  <EntityType Name="ApplicationForm">
+    <Key>
+      <PropertyRef Name="ARN" />
+    </Key>
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ApplicantID" Type="int" Nullable="false" />
+    <Property Name="ApplicationType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="SchemeType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CurrentStatus" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DateOfSubmission" Type="datetime" Nullable="false" />
+    <Property Name="DateOfBirth" Type="date" Nullable="false" />
+    <Property Name="GrantingDecisionDate" Type="datetime" />
+    <Property Name="GrantingOfficerID" Type="int" />
+    <Property Name="PVCompletedDate" Type="datetime" />
+    <Property Name="ApplicationCloseDate" Type="datetime" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="PlaceOfBirth" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MaritalStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nationality" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="PassportType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="BookletType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="ValidityRequired" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApplicationStatusHistory">
+    <Key>
+      <PropertyRef Name="StatusID" />
+    </Key>
+    <Property Name="StatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="StatusCode" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="StatusMessage" Type="varchar" MaxLength="255" />
+    <Property Name="ChangedOn" Type="datetime" />
+    <Property Name="ChangedBy" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="AppointmentSchedule">
+    <Key>
+      <PropertyRef Name="ScheduleID" />
+    </Key>
+    <Property Name="ScheduleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PSKLocationID" Type="int" Nullable="false" />
+    <Property Name="AppointmentDate" Type="date" Nullable="false" />
+    <Property Name="AppointmentTime" Type="time" Precision="7" Nullable="false" />
+    <Property Name="BookingStatus" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AppUser">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LoginID" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="EmailAddress" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PasswordHash" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="Salt" Type="varchar" MaxLength="128" Nullable="false" />
+    <Property Name="FullName" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="RegistrationType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AccountStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DateRegistered" Type="datetime" />
+    <Property Name="LastLogin" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BiometricData">
+    <Key>
+      <PropertyRef Name="BiometricID" />
+    </Key>
+    <Property Name="BiometricID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PhotoReference" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="FingerprintReference" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="CaptureTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="CaptureDeviceID" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DispatchLog">
+    <Key>
+      <PropertyRef Name="DispatchID" />
+    </Key>
+    <Property Name="DispatchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PassportID" Type="int" Nullable="false" />
+    <Property Name="ConsignmentNumber" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DispatchDate" Type="datetime" Nullable="false" />
+    <Property Name="CourierAgency" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DeliveryStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DeliveryDate" Type="datetime" />
+    <Property Name="DeliveryFailureReason" Type="varchar" MaxLength="100" />
+    <Property Name="RTSReceivedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="DocumentChecklist">
+    <Key>
+      <PropertyRef Name="DocCheckID" />
+    </Key>
+    <Property Name="DocCheckID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DocumentType" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="RequiredFlag" Type="bit" Nullable="false" />
+    <Property Name="SubmittedFlag" Type="bit" Nullable="false" />
+    <Property Name="VerifiedFlag" Type="bit" />
+    <Property Name="DeficiencyDetails" Type="varchar" MaxLength="255" />
+    <Property Name="VerificationTimestamp" Type="datetime" />
+  </EntityType>
+  <EntityType Name="FileForwardingLog">
+    <Key>
+      <PropertyRef Name="ForwardLogID" />
+    </Key>
+    <Property Name="ForwardLogID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ForwardingDate" Type="datetime" Nullable="false" />
+    <Property Name="FromAuthority" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ToAuthority" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ForwardingPurpose" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="TrackingReference" Type="varchar" MaxLength="50" />
+    <Property Name="ExpectedReturnDate" Type="date" />
+    <Property Name="ActualReturnDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PassportApplication">
+    <Key>
+      <PropertyRef Name="ApplicationID" />
+    </Key>
+    <Property Name="ApplicationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="FileNumber" Type="varchar" MaxLength="20" />
+    <Property Name="ServiceType" Type="varchar" MaxLength="20" />
+    <Property Name="ApplicationStatus" Type="varchar" MaxLength="20" />
+    <Property Name="DateStarted" Type="datetime" />
+    <Property Name="DateSubmitted" Type="datetime" />
+  </EntityType>
+  <EntityType Name="PassportBooklet">
+    <Key>
+      <PropertyRef Name="PassportID" />
+    </Key>
+    <Property Name="PassportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PassportNumber" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="BookletType" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="BookletSize" Type="int" Nullable="false" />
+    <Property Name="DateOfIssue" Type="date" Nullable="false" />
+    <Property Name="DateOfExpiry" Type="date" Nullable="false" />
+    <Property Name="PrintingUnitID" Type="int" Nullable="false" />
+    <Property Name="PrintingDate" Type="datetime" Nullable="false" />
+    <Property Name="QualityControlStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="QCInspectorID" Type="int" />
+    <Property Name="ePassportChipStatus" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PaymentTransaction">
+    <Key>
+      <PropertyRef Name="TransactionID" />
+    </Key>
+    <Property Name="TransactionID" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PaymentAmount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="PaymentStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PaymentMethod" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="PoliceVerificationReport">
+    <Key>
+      <PropertyRef Name="PVReportID" />
+    </Key>
+    <Property Name="PVReportID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PVRequestID" Type="int" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="ReportDate" Type="datetime" Nullable="false" />
+    <Property Name="VerificationOutcome" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="AddressVerifiedFlag" Type="bit" Nullable="false" />
+    <Property Name="BackgroundClearFlag" Type="bit" Nullable="false" />
+    <Property Name="ReportDetails" Type="text" />
+    <Property Name="InvestigatingOfficerID" Type="varchar" MaxLength="50" />
+    <Property Name="DateOfVisit" Type="date" />
+  </EntityType>
+  <EntityType Name="PoliceVerificationRequest">
+    <Key>
+      <PropertyRef Name="PVRequestID" />
+    </Key>
+    <Property Name="PVRequestID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="RequestDate" Type="datetime" Nullable="false" />
+    <Property Name="PoliceStationCode" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="VerificationType" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="PVSendStatus" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="TrackingID" Type="varchar" MaxLength="50" />
+    <Property Name="TargetCompletionDate" Type="date" />
+  </EntityType>
+  <EntityType Name="PSKDecisionDetail">
+    <Key>
+      <PropertyRef Name="DecisionID" />
+    </Key>
+    <Property Name="DecisionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="DecisionOutcome" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="DecisionReason" Type="varchar" MaxLength="255" />
+    <Property Name="Remarks" Type="text" />
+    <Property Name="DecisionTimestamp" Type="datetime" Nullable="false" />
+    <Property Name="GrantingOfficerID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PSKVisitDetail">
+    <Key>
+      <PropertyRef Name="VisitID" />
+    </Key>
+    <Property Name="VisitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ARN" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="PSKLocationID" Type="int" Nullable="false" />
+    <Property Name="ActualVisitTime" Type="datetime" Nullable="false" />
+    <Property Name="TokenNumber" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="CounterA_Status" Type="varchar" MaxLength="20" />
+    <Property Name="CounterA_OfficerID" Type="int" />
+    <Property Name="CounterB_Status" Type="varchar" MaxLength="20" />
+    <Property Name="CounterB_OfficerID" Type="int" />
+    <Property Name="CounterC_Status" Type="varchar" MaxLength="20" />
+    <Property Name="CounterC_OfficerID" Type="int" />
+  </EntityType>
+  <Association Name="FK__Applicati__Appli__4F7CD00D">
+    <End Role="Applicant" Type="Self.Applicant" Multiplicity="1" />
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Applicant">
+        <PropertyRef Name="ApplicantID" />
+      </Principal>
+      <Dependent Role="ApplicationForm">
+        <PropertyRef Name="ApplicantID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Application__ARN__02FC7413">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="ApplicationStatusHistory" Type="Self.ApplicationStatusHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="ApplicationStatusHistory">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Appointment__ARN__59FA5E80">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="AppointmentSchedule" Type="Self.AppointmentSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="AppointmentSchedule">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__BiometricDa__ARN__656C112C">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="BiometricData" Type="Self.BiometricData" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="BiometricData">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DispatchL__Passp__7F2BE32F">
+    <End Role="PassportBooklet" Type="Self.PassportBooklet" Multiplicity="1" />
+    <End Role="DispatchLog" Type="Self.DispatchLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PassportBooklet">
+        <PropertyRef Name="PassportID" />
+      </Principal>
+      <Dependent Role="DispatchLog">
+        <PropertyRef Name="PassportID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__DocumentChe__ARN__619B8048">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="DocumentChecklist" Type="Self.DocumentChecklist" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="DocumentChecklist">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__FileForward__ARN__6C190EBB">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="FileForwardingLog" Type="Self.FileForwardingLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="FileForwardingLog">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PassportBoo__ARN__7A672E12">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="PassportBooklet" Type="Self.PassportBooklet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="PassportBooklet">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PaymentTran__ARN__5441852A">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="PaymentTransaction" Type="Self.PaymentTransaction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="PaymentTransaction">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PoliceVer__PVReq__74AE54BC">
+    <End Role="PoliceVerificationRequest" Type="Self.PoliceVerificationRequest" Multiplicity="1" />
+    <End Role="PoliceVerificationReport" Type="Self.PoliceVerificationReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PoliceVerificationRequest">
+        <PropertyRef Name="PVRequestID" />
+      </Principal>
+      <Dependent Role="PoliceVerificationReport">
+        <PropertyRef Name="PVRequestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PoliceVerif__ARN__6FE99F9F">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="PoliceVerificationRequest" Type="Self.PoliceVerificationRequest" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="PoliceVerificationRequest">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PoliceVerif__ARN__75A278F5">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="PoliceVerificationReport" Type="Self.PoliceVerificationReport" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="PoliceVerificationReport">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PSKDecision__ARN__693CA210">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="PSKDecisionDetail" Type="Self.PSKDecisionDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="PSKDecisionDetail">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PSKVisitDet__ARN__5DCAEF64">
+    <End Role="ApplicationForm" Type="Self.ApplicationForm" Multiplicity="1" />
+    <End Role="PSKVisitDetail" Type="Self.PSKVisitDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ApplicationForm">
+        <PropertyRef Name="ARN" />
+      </Principal>
+      <Dependent Role="PSKVisitDetail">
+        <PropertyRef Name="ARN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Applicant_AppUser">
+    <End Role="AppUser" Type="Self.AppUser" Multiplicity="0..1" />
+    <End Role="Applicant" Type="Self.Applicant" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Applicant">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AppUser_Passport">
+    <End Role="AppUser" Type="Self.AppUser" Multiplicity="1" />
+    <End Role="PassportApplication" Type="Self.PassportApplication" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AppUser">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="PassportApplication">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="SP_ApplicationPassport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmailAddress" Type="varchar" Mode="In" />
+    <Parameter Name="FirstName" Type="varchar" Mode="In" />
+    <Parameter Name="LastName" Type="varchar" Mode="In" />
+    <Parameter Name="MobileNumber" Type="varchar" Mode="In" />
+    <Parameter Name="ApplicationType" Type="varchar" Mode="In" />
+    <Parameter Name="SchemeType" Type="varchar" Mode="In" />
+    <Parameter Name="Gender" Type="varchar" Mode="In" />
+    <Parameter Name="DateOfBirth" Type="date" Mode="In" />
+    <Parameter Name="PlaceOfBirth" Type="varchar" Mode="In" />
+    <Parameter Name="MaritalStatus" Type="varchar" Mode="In" />
+    <Parameter Name="PassportType" Type="varchar" Mode="In" />
+    <Parameter Name="BookletType" Type="varchar" Mode="In" />
+    <Parameter Name="ValidityRequired" Type="int" Mode="In" />
+    <Parameter Name="ARN" Type="varchar" Mode="In" />
+  </Function>
+  <EntityContainer Name="passportModelStoreContainer">
+    <EntitySet Name="Applicant" EntityType="Self.Applicant" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationForm" EntityType="Self.ApplicationForm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApplicationStatusHistory" EntityType="Self.ApplicationStatusHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppointmentSchedule" EntityType="Self.AppointmentSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AppUser" EntityType="Self.AppUser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BiometricData" EntityType="Self.BiometricData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DispatchLog" EntityType="Self.DispatchLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DocumentChecklist" EntityType="Self.DocumentChecklist" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FileForwardingLog" EntityType="Self.FileForwardingLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PassportApplication" EntityType="Self.PassportApplication" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PassportBooklet" EntityType="Self.PassportBooklet" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PaymentTransaction" EntityType="Self.PaymentTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PoliceVerificationReport" EntityType="Self.PoliceVerificationReport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PoliceVerificationRequest" EntityType="Self.PoliceVerificationRequest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSKDecisionDetail" EntityType="Self.PSKDecisionDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PSKVisitDetail" EntityType="Self.PSKVisitDetail" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Applicati__Appli__4F7CD00D" Association="Self.FK__Applicati__Appli__4F7CD00D">
+      <End Role="Applicant" EntitySet="Applicant" />
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Application__ARN__02FC7413" Association="Self.FK__Application__ARN__02FC7413">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="ApplicationStatusHistory" EntitySet="ApplicationStatusHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Appointment__ARN__59FA5E80" Association="Self.FK__Appointment__ARN__59FA5E80">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="AppointmentSchedule" EntitySet="AppointmentSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK__BiometricDa__ARN__656C112C" Association="Self.FK__BiometricDa__ARN__656C112C">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="BiometricData" EntitySet="BiometricData" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DispatchL__Passp__7F2BE32F" Association="Self.FK__DispatchL__Passp__7F2BE32F">
+      <End Role="PassportBooklet" EntitySet="PassportBooklet" />
+      <End Role="DispatchLog" EntitySet="DispatchLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK__DocumentChe__ARN__619B8048" Association="Self.FK__DocumentChe__ARN__619B8048">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="DocumentChecklist" EntitySet="DocumentChecklist" />
+    </AssociationSet>
+    <AssociationSet Name="FK__FileForward__ARN__6C190EBB" Association="Self.FK__FileForward__ARN__6C190EBB">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="FileForwardingLog" EntitySet="FileForwardingLog" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PassportBoo__ARN__7A672E12" Association="Self.FK__PassportBoo__ARN__7A672E12">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="PassportBooklet" EntitySet="PassportBooklet" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PaymentTran__ARN__5441852A" Association="Self.FK__PaymentTran__ARN__5441852A">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="PaymentTransaction" EntitySet="PaymentTransaction" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PoliceVer__PVReq__74AE54BC" Association="Self.FK__PoliceVer__PVReq__74AE54BC">
+      <End Role="PoliceVerificationRequest" EntitySet="PoliceVerificationRequest" />
+      <End Role="PoliceVerificationReport" EntitySet="PoliceVerificationReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PoliceVerif__ARN__6FE99F9F" Association="Self.FK__PoliceVerif__ARN__6FE99F9F">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="PoliceVerificationRequest" EntitySet="PoliceVerificationRequest" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PoliceVerif__ARN__75A278F5" Association="Self.FK__PoliceVerif__ARN__75A278F5">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="PoliceVerificationReport" EntitySet="PoliceVerificationReport" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PSKDecision__ARN__693CA210" Association="Self.FK__PSKDecision__ARN__693CA210">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="PSKDecisionDetail" EntitySet="PSKDecisionDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PSKVisitDet__ARN__5DCAEF64" Association="Self.FK__PSKVisitDet__ARN__5DCAEF64">
+      <End Role="ApplicationForm" EntitySet="ApplicationForm" />
+      <End Role="PSKVisitDetail" EntitySet="PSKVisitDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Applicant_AppUser" Association="Self.FK_Applicant_AppUser">
+      <End Role="AppUser" EntitySet="AppUser" />
+      <End Role="Applicant" EntitySet="Applicant" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AppUser_Passport" Association="Self.FK_AppUser_Passport">
+      <End Role="AppUser" EntitySet="AppUser" />
+      <End Role="PassportApplication" EntitySet="PassportApplication" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
